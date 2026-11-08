@@ -1,0 +1,10 @@
+#ifndef IMAGE_DATABASE_DATABASE_H_
+#define IMAGE_DATABASE_DATABASE_H_
+
+namespace imgdb
+{
+
+}
+
+#endif // IMAGE_DATABASE_DATABASE_H_
+
