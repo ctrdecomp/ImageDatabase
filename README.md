@@ -15,9 +15,8 @@ lookout for variants of this library; if you find any, please notify us.
 
 | Path | Contents |
 |------|----------|
-| `src/` | One translation unit per class |
-| `include/imgdb.h` | The whole library in one header: `#include <imgdb.h>` |
-| `include/Core/` | One header per class, included by `imgdb.h` |
+| `Core/`, `ImageIO/` | One translation unit per class |
+| `imgdb.h` | The whole library in one header: `#include <imgdb.h>` |
 
 imgdb builds on the `nn` SDK. Your project supplies those headers, reachable
 as `nn/...` through `NN_INCLUDE_DIR`. Specifically, this library uses
