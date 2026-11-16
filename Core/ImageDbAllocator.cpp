@@ -1,43 +1,58 @@
-/**
- * @file ImageDbAllocator.cpp
- * 
- * @date 10/16/2026
- * 
- * @author Luigifan27
- * 
- * @brief ImageDB Allocator Implementation.
- */
 
-#include <Core/ImageDbAllocator.h>
+#include "ImageDbAllocator.h"
 
-namespace imgdb
-{
-namespace
-{
-    Allocator s_Allocator;
-    Allocator s_FileAllocator;
+
+
+
+namespace imgdb {
+
+namespace {
+
+Allocator s_Allocator;
+Allocator s_FileAllocator;
+
 } // namespace
 
-Allocator& GetAllocator()
+// [open question] In Spider-Man 2012 this function's DIE has no namespace
+// parent (unlike GetFileAllocator below),
+// though its symbol is imgdb::GetAllocator
+
+
+
+Allocator* GetAllocator()
 {
-    return s_Allocator;
+
+    return &s_Allocator;
 }
 
-Allocator& GetFileAllocator()
+Allocator* GetFileAllocator()
 {
-    return s_FileAllocator;
+
+    return &s_FileAllocator;
 }
+
+
+
+
+void SetAllocator(nn::fnd::IAllocator* pAllocator, nn::fnd::IAllocator* pFileAllocator)
+{
+
+
+
+
+
+
+    s_Allocator.Initialize(*pAllocator);
+    s_FileAllocator.Initialize(*pFileAllocator);
+}
+
+
+
 
 void ResetAllocator()
 {
-    s_Allocator.Reset();
-    s_FileAllocator.Reset();
+    s_Allocator.Release();
+    s_FileAllocator.Release();
 }
 
-void SetAllocator(IAllocator* pAllocator, IAllocator* pFileAllocator)
-{
-    s_Allocator.Initialize(*pAllocator);
-    s_FileAllocator.Initialize(*pAllocator);
-}
 } // namespace imgdb
-
