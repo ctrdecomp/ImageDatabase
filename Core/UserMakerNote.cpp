@@ -63,7 +63,7 @@
 
 namespace imgdb {
 FaceInfo& UserMakerNote::GetFaceInfo(int nIndex)
-{   // inferred scope start
-
+{
+	return sFaceInfo[nIndex];
 }
 } // namespace imgdb

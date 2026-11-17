@@ -59,19 +59,19 @@ bool ImageInfo::Validate() const
 
 bool ImageInfo::ValidateWithoutPath() const
 {
-    // imgdb::ImageInfo::GetValidityFlag() inlined here
-
-        // imgdb::DateTimeSeconds::IsInvalid() called here
-
-
-
-
-        // imgdb::DateTimeSeconds::IsInvalid() called here
+    if (GetValidityFlag())
+    {
+        if (sShotSeconds.IsInvalid()) return false;
 
 
 
 
+        if (sCreateSeconds.IsInvalid()) return false;
+    }
 
+
+
+    return true;
 }
 
 
@@ -318,9 +318,9 @@ IndexInfo ImageInfo::GetIndexInfo() const
 
 
 bool ImageInfo::GetValidityFlag() const
-{   // inferred scope start; locals: const bool bValidity;
-
-
+{
+	const bool bValidity = nFlagA & 1;
+	return bValidity;
 }
 
 void ImageInfo::SetValidityFlag(bool bValidity)
@@ -337,15 +337,15 @@ void ImageInfo::SetValidityFlag(bool bValidity)
 
 
 HandleTypeBit ImageInfo::GetHandleTypeBit() const
-{   // inferred scope start; locals: const HandleTypeBit eBit;
-
-
-
+{
+	const HandleTypeBit eBit =
+		static_cast<HandleTypeBit>((nFlagA << 23) >> 24);
+	return eBit;
 }
 
 void ImageInfo::SetHandleTypeBit(HandleTypeBit eBit)
-{   // inferred scope start
-
+{
+	nFlagA = (nFlagA & 0xfffffe01) | (eBit << 1);
 
 }
 
@@ -399,8 +399,8 @@ ShootingType ImageInfo::GetShootingType() const
 }
 
 void ImageInfo::SetShootingType(ShootingType eType)
-{   // inferred scope start
-
+{
+	nFlagB = (eType & 0x1f) | (nFlagB & 0xffffffe0);
 
 }
 
@@ -408,15 +408,15 @@ void ImageInfo::SetShootingType(ShootingType eType)
 
 
 DistinctionTypeBit ImageInfo::GetDistinctionTypeBit() const
-{   // inferred scope start; locals: const DistinctionTypeBit eBit;
-
-
-
+{
+	const DistinctionTypeBit eBit =
+		static_cast<DistinctionTypeBit>((nFlagB << 19) >> 24);
+	return eBit;
 }
 
 void ImageInfo::SetDistinctionTypeBit(DistinctionTypeBit eBit)
-{   // inferred scope start
-
+{
+	nFlagB = (nFlagB & 0xffe0001f) | (eBit << 5);
 
 }
 
@@ -424,10 +424,10 @@ void ImageInfo::SetDistinctionTypeBit(DistinctionTypeBit eBit)
 
 
 SaveProcessType ImageInfo::GetSaveProcessType() const
-{   // inferred scope start; locals: const SaveProcessType eType;
-
-
-
+{
+	const SaveProcessType eType =
+		static_cast<SaveProcessType>((nFlagB & 0x1e00000) >> 21);
+	return eType;
 }
 
 void ImageInfo::SetSaveProcessType(SaveProcessType eType)

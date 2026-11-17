@@ -16,7 +16,7 @@ namespace imgdb { class PhotoHeaderFileReader; }
 
 namespace imgdb {
 
-class FileReader : public nn::util::ADLFireWall::NonCopyable<FileReader> { // size 0x30
+class FileReader : private nn::util::ADLFireWall::NonCopyable<FileReader> { // size 0x30
 public:
     FileReader(Allocator&);
     FileReader(Allocator& rAllocator, std::size_t nLimitFileSize,

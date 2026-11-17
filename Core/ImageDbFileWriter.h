@@ -15,7 +15,7 @@ namespace imgdb { class FileWriter; }
 namespace imgdb {
 
 
-class FileWriter : public nn::util::ADLFireWall::NonCopyable<FileWriter> { // size 0x10
+class FileWriter : private nn::util::ADLFireWall::NonCopyable<FileWriter> { // size 0x10
 public:
     FileWriter(Allocator& rAllocator);
     virtual ~FileWriter();
@@ -32,7 +32,7 @@ private:
     nn::Result m_NnResult;   // +0xc
 };
 
-class ImageFileWriter : public FileWriter { // size 0x24
+class ImageFileWriter : private FileWriter { // size 0x24
 public:
     ImageFileWriter(Allocator& rAllocator, StorageType eStoType,
                     const ImageInfo& rInfo, bool bTwlCompatible,

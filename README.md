@@ -3,7 +3,7 @@
 A WIP decompilation of `imgdb`, the Nintendo 3DS ImageDatabase library.
 
 All files were generated from debug information encoded in The Amazing
-Spider-Man (2012)'s debug `.axf`. The initial code was split out of the
+Spider-Man (2012)'s debug `.axf`. Some matches were split out of the
 [Animal Crossing: New Leaf](https://github.com/AlgebraManiacABC/acnlwa-decomp)
 decomp, where it was matched against that game's USA v1.4 `code.bin`.
 
@@ -20,7 +20,7 @@ lookout for variants of this library; if you find any, please notify us.
 
 imgdb builds on the `nn` SDK. Your project supplies those headers, reachable
 as `nn/...` through `NN_INCLUDE_DIR`. Specifically, this library uses
-`nn/util/ADLFireWall/NonCopyable.h` and `nn/crypto/HashContextBase.h`.
+`util`, `crypto`, `types`, `fnd`, `jpeg`, `fs`, and `Result`.
 
 ## Using it with 3dsd
 
@@ -35,8 +35,7 @@ and declare it in `cc.yaml`:
 ```yaml
 dependencies:
   ImageDatabase:
-    sources: [src] # imgdb-relative
-    include: [include] # imgdb-relative
+    sources: [Core, ImageIO] # imgdb-relative
     "*":
       cc: <compiler_here>
       flags: [<flags you want go here>]

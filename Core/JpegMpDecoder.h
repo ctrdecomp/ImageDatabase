@@ -49,7 +49,7 @@ private:
 
 
 class JpegDecoder : public JpegMpBaseDecoder,
-                    public nn::util::ADLFireWall::NonCopyable<JpegDecoder> { // size 0x68
+                    private nn::util::ADLFireWall::NonCopyable<JpegDecoder> { // size 0x68
 public:
     JpegDecoder(const void* pJpegData, std::size_t nJpegSize);
     JpegDecoder(const void* pJpegData, std::size_t nJpegSize, void* pRawData,
@@ -94,7 +94,7 @@ private:
 
 
 class MpDecoder : public JpegMpBaseDecoder,
-                  public nn::util::ADLFireWall::NonCopyable<MpDecoder> { // size 0x6c
+                  private nn::util::ADLFireWall::NonCopyable<MpDecoder> { // size 0x6c
 public:
     MpDecoder(const void* pMpData, std::size_t nMpSize);
     MpDecoder(const void*, std::size_t, void*, void*, std::size_t);

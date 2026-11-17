@@ -89,7 +89,7 @@ private:
 
 
 class JpegEncoder : public JpegMpBaseEncoder,
-                    public nn::util::ADLFireWall::NonCopyable<JpegEncoder> { // size 0x98
+                    private nn::util::ADLFireWall::NonCopyable<JpegEncoder> { // size 0x98
 public:
     JpegEncoder(const void* pRawData, nn::jpeg::CTR::PixelFormat eRawFormat,
                 int nWidth, int nHeight);
@@ -112,7 +112,7 @@ private:
 
 
 class MpEncoder : public JpegMpBaseEncoder,
-                  public nn::util::ADLFireWall::NonCopyable<MpEncoder> { // size 0xa0
+                  private nn::util::ADLFireWall::NonCopyable<MpEncoder> { // size 0xa0
 public:
     MpEncoder(const void*, const void*, nn::jpeg::CTR::PixelFormat, int, int);
     virtual ~MpEncoder();

@@ -104,10 +104,10 @@ void SysMakerNote::Initialize()
 
 
 ShootingType SysMakerNote::GetShootingType() const
-{   // inferred scope start; locals: const ShootingType eType;
-
-
-
+{
+	const ShootingType eType =
+		static_cast<ShootingType>((nCharacterFlag & 0xf80) >> 7);
+	return eType;
 }
 
 void SysMakerNote::SetShootingType(ShootingType eType)
@@ -120,15 +120,15 @@ void SysMakerNote::SetShootingType(ShootingType eType)
 
 
 DistinctionTypeBit SysMakerNote::GetDistinctionTypeBit() const
-{   // inferred scope start; locals: const DistinctionTypeBit eBit;
-
-
-
+{
+    const DistinctionTypeBit eBit =
+		static_cast<DistinctionTypeBit>((nCharacterFlag << 12) >> 24);
+	return eBit;
 }
 
 void SysMakerNote::SetDistinctionTypeBit(DistinctionTypeBit eBit)
-{   // inferred scope start
-
-
+{
+	nCharacterFlag &= 0xf0000fff;
+	nCharacterFlag |= eBit << 12;
 }
 } // namespace imgdb

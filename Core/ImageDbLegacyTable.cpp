@@ -113,15 +113,15 @@ LegacyTable::LegacyTable()
 
 
 std::size_t LegacyTable::ComputeTableSize(int nRecordNum, u16 nExtAreaSize)
-{   // inferred scope start; locals: std::size_t nSize;
+{
+
+    size_t nSize = nExtAreaSize + nRecordNum * 0x10 + 0x37U & 0xffffffe0;
 
 
 
 
 
-
-
-
+	return nSize;
 }
 
 

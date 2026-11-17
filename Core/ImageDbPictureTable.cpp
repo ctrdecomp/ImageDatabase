@@ -59,11 +59,11 @@ void PictureTableHeader::SetTargetArchive(StorageType eStoType)
 
 
 void PictureTableRecord::Initialize()
-{   // locals: { int i; }
-    // imgdb::ImageInfo::Initialize() called here
-
-        // imgdb::FaceInfo::Initialize() called here
-
+{
+    sImgInfo.Initialize();
+    for (int i = 0; i < 4; i++) {
+        sFaceInfo[i].Initialize();
+    }
 }
 
 
@@ -116,10 +116,10 @@ PictureTable::PictureTable()
 
 
 std::size_t PictureTable::ComputeTableSize(int nRecordNum, u16 nExtAreaSize)
-{   // locals: const std::size_t nSize;
+{
 
-
-
+	const size_t nSize = nExtAreaSize + nRecordNum * 0x98 + 0x18;
+	return nSize;
 
 }
 

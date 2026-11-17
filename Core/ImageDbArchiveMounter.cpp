@@ -1,8 +1,8 @@
 #include <nn/types.h>
+#include <nn/Result.h>
 #include "ImageDbArchiveMounter.h"
-
-
-
+#include <nn/fs.h>
+#include <nn/err/CTR/err_FatalErrTypes.h>
 
 
 
@@ -189,7 +189,17 @@ CtrNandArchiveMounter::~CtrNandArchiveMounter()
 
 
 bool CtrNandArchiveMounter::Mount()
-{   // locals: { nn::Result ret; }
+{
+    if (!m_bMount)
+    {
+        nn::Result ret;
+
+
+
+
+        ret = nn::fs::MountSharedExtSaveData(
+                c_pArchiveNameWithColon, 0xF0000001);
+        m_bMount = !ret.IsFailure();
 
 
 
@@ -197,30 +207,20 @@ bool CtrNandArchiveMounter::Mount()
 
 
 
-        // nn::fs::MountSharedExtSaveData() called here
-
-        // nn::Result::IsFailure() inlined here
 
 
 
 
 
-
-
-
-
-
-
-
-
-            // nn::err::CTR::ThrowFatalErr() called here
-
-
-
-
-
-
-
+        if (!m_bMount) {
+            nn::err::CTR::ThrowFatalErr(ret);
+        }
+        return m_bMount;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 

@@ -10,17 +10,17 @@ namespace imgdb {
 
 class ArchiveMounter { // size 0x4
 public:
-    virtual void VF00();
-    virtual void VF01();
-    virtual void VF02();
-    virtual void VF03();
+    virtual bool Mount() = 0;
+    virtual void Unmount() = 0;
+    virtual bool IsMount() const = 0;
+    virtual s64 GetFreeSize() const = 0;
     virtual ~ArchiveMounter();
 };
 
 
 class SdArchiveMounter : public Singleton<SdArchiveMounter>,
         public ArchiveMounter,
-        public nn::util::ADLFireWall::NonCopyable<SdArchiveMounter> { // size 0xc
+        private nn::util::ADLFireWall::NonCopyable<SdArchiveMounter> { // size 0xc
 public:
     virtual bool Mount();
     virtual void Unmount();
@@ -51,7 +51,7 @@ private:
 
 class CtrNandArchiveMounter : public Singleton<CtrNandArchiveMounter>,
         public ArchiveMounter,
-        public nn::util::ADLFireWall::NonCopyable<CtrNandArchiveMounter> { // size 0xc
+        private nn::util::ADLFireWall::NonCopyable<CtrNandArchiveMounter> { // size 0xc
 public:
     virtual bool Mount();
     virtual void Unmount();
@@ -76,7 +76,7 @@ private:
 
 class TwlNandArchiveMounter : public Singleton<TwlNandArchiveMounter>,
         public ArchiveMounter,
-        public nn::util::ADLFireWall::NonCopyable<TwlNandArchiveMounter> { // size 0xc
+        private nn::util::ADLFireWall::NonCopyable<TwlNandArchiveMounter> { // size 0xc
 public:
     virtual bool Mount();
     virtual void Unmount();

@@ -68,7 +68,7 @@ private:
 
 
 class JpegSaver : public JpegMpBaseSaver,
-                  public nn::util::ADLFireWall::NonCopyable<JpegSaver> { // size 0x30
+                  private nn::util::ADLFireWall::NonCopyable<JpegSaver> { // size 0x30
 public:
     JpegSaver();
     virtual ~JpegSaver();
@@ -102,7 +102,7 @@ private:
 
 
 class MpSaver : public JpegMpBaseSaver,
-                public nn::util::ADLFireWall::NonCopyable<MpSaver> { // size 0x38
+                private nn::util::ADLFireWall::NonCopyable<MpSaver> { // size 0x38
 public:
     MpSaver();
     virtual ~MpSaver();

@@ -135,8 +135,8 @@ PictureDatabase::~PictureDatabase()
 
 
 bool PictureDatabase::IsInitialized() const
-{   // inferred scope start
-
+{
+	return m_pAllocator != NULL;
 }
 
 
@@ -515,9 +515,9 @@ void PictureDatabase::SeNextIndexInfo(const IndexInfo& rIdxInfo)
 
 
 const PictureDbRecord& PictureDatabase::GetRecord(int nIndex) const
-{   // inferred scope start
+{
 
-
+	return m_pRecords[nIndex];
 
 }
 

@@ -19,13 +19,13 @@
 
 
 namespace imgdb {
-ImageSearcher::ImageSearcher()
-
-
-
-
+ImageSearcher::ImageSearcher() :
+    m_pAllocator(NULL),
+    m_eStoType(StorageTypeReserved2),
+    m_pDirDirs(NULL),
+    m_pDirFiles(NULL)
 {
-    // imgdb::ImageInfo::Initialize() called here
+    m_sFoundImgInfo.Initialize();
 }
 
 

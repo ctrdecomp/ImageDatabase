@@ -173,8 +173,8 @@ bool FileReader::Read(StorageType eStoType, const wchar_t* pPath)
 
 
 s64 FileReader::GetFileSize() const
-{   // inferred scope start
-
+{
+	return m_nFileSize;
 }
 
 
