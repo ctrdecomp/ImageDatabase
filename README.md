@@ -8,8 +8,12 @@ Spider-Man (2012)'s debug `.axf`. Some matches were split out of the
 decomp, where it was matched against that game's USA v1.4 `code.bin`.
 
 Notably, `imgdb` does not appear in the "plain.bin" of any 3ds game.
-Thus, there are not yet any particular versions identified. We are on the
-lookout for variants of this library; if you find any, please notify us.
+Thus, there are no version numbers associated with this library.
+However, there are known differences. Currently, two versions of this
+library are maintained: SM2012 (which matches the previously-mentioned
+debug build) and ACNL (Animal Crossing: New Leaf). If your game
+has features unique to it, separate from these two versions, please
+create a GitHub issue with as much detail as you can provide.
 
 ## Layout
 
