@@ -105,8 +105,8 @@ void Crc16Context::InitTable()
 }
 
 
-
-
+void Crc16Context::VF07() {}
+u32 Crc16Context::VF08() { return 2; }
 
 
 

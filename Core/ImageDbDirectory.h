@@ -15,7 +15,7 @@ namespace imgdb {
 
 
 
-class Directory { // size 0x24
+class Directory { // size 0x28
 public:
 
 
@@ -47,13 +47,14 @@ public:
 private:
     Allocator*              m_pAllocator;       // +0x0
     bool                    m_bReady;           // +0x4
-    StorageType             m_eStoType;         // +0x5
-    nn::fs::Directory       m_Directory;        // +0x8
-    nn::fs::DirectoryEntry* m_pEntries;         // +0x10
-    int                     m_nEntryNum;        // +0x14
-    int                     m_nEntryIndex;      // +0x18
-    int                     m_nReadLimitNum;    // +0x1c
-    int                     m_nReadCnt;         // +0x20
+	u8                      unk_0x05[3];        // +0x5
+    StorageType             m_eStoType;         // +0x8
+    nn::fs::Directory       m_Directory;        // +0xc
+    nn::fs::DirectoryEntry* m_pEntries;         // +0x14
+    int                     m_nEntryNum;        // +0x18
+    int                     m_nEntryIndex;      // +0x1c
+    int                     m_nReadLimitNum;    // +0x20
+    int                     m_nReadCnt;         // +0x24
 };
 
 } // namespace imgdb

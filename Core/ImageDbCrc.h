@@ -16,9 +16,9 @@ public:
     virtual size_t GetHashLength() { return sizeof(u16); }          // slot 3; body inferred (no DWARF)
     virtual void GetHash(void* pOut);                               // slot 4
     virtual ~Crc16Context();                                        // slots 5, 6
-
+    virtual void VF07();                                            // slot 7
     static void InitTable();
-
+    virtual u32 VF08();                                             // slot 8
     friend class Crc16; // Crc16::GetHash reads m_nHash
 private:
     bool m_bInitialized;                    // +0x4

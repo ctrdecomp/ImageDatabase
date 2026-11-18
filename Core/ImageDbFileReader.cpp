@@ -151,7 +151,7 @@ bool FileReader::Read(StorageType eStoType, const wchar_t* pPath)
 
 
 
-
+void FileReader::VF03() {}
 
 
 
@@ -350,7 +350,7 @@ bool PhotoHeaderFileReader::Read(StorageType eStoType, const wchar_t* pPath)
 
 
 
-
+void PhotoHeaderFileReader::VF03() {}
 
 
 
@@ -375,7 +375,7 @@ void PhotoHeaderFileReader::SetDefaultLimitFileSize(std::size_t nSize)
 
 
 
-ImageFileReader::ImageFileReader(Allocator& rAllocator, StorageType eStoType, const ImageInfo& rImgInfo, bool bTwlCompatible) : PhotoFileReader(rAllocator), m_eStoType(eStoType), m_rImgInfo(rImgInfo), m_bTwlCompatible(bTwlCompatible)
+PhotoImageInfoReader::PhotoImageInfoReader(Allocator& rAllocator, StorageType eStoType, const ImageInfo& rImgInfo, bool bTwlCompatible) : PhotoFileReader(rAllocator), m_eStoType(eStoType), m_rImgInfo(rImgInfo), m_bTwlCompatible(bTwlCompatible)
 
 
 
@@ -399,7 +399,7 @@ ImageFileReader::ImageFileReader(Allocator& rAllocator, StorageType eStoType, co
 
 
 
-Result ImageFileReader::ReadImage()
+Result PhotoImageInfoReader::ReadImage()
 {
     // Result eResult;
     // unsigned short cPath[44];
@@ -424,7 +424,7 @@ Result ImageFileReader::ReadImage()
 
 
 
-ImageHeaderFileReader::ImageHeaderFileReader(Allocator& rAllocator, StorageType eStoType,
+PhotoHeaderImageInfoReader::PhotoHeaderImageInfoReader(Allocator& rAllocator, StorageType eStoType,
                                              const ImageInfo& rImgInfo, bool bTwlCompatible) :
     PhotoHeaderFileReader(rAllocator),
     m_eStoType(eStoType),
@@ -438,7 +438,7 @@ ImageHeaderFileReader::ImageHeaderFileReader(Allocator& rAllocator, StorageType 
 
 
 
-Result ImageHeaderFileReader::ReadImage()
+Result PhotoHeaderImageInfoReader::ReadImage()
 {
     // Result eResult;
     // unsigned short cPath[44];

@@ -22,8 +22,9 @@ public:
     FileReader(Allocator& rAllocator, std::size_t nLimitFileSize,
                bool bReadLimit = false);
     FileReader(void* pBuf, std::size_t nBufSize, bool bReadLimit = false);
-    virtual ~FileReader();
-    virtual bool Read(StorageType, const wchar_t*);
+    virtual ~FileReader(); // slot 0, 1
+    virtual bool Read(StorageType, const wchar_t*); // slot 2
+	virtual void VF03(); // slot 3
 
     const void* GetData() const;
     void* GetData();
@@ -55,6 +56,7 @@ public:
     PhotoHeaderFileReader(Allocator&, std::size_t);
     virtual ~PhotoHeaderFileReader();
     virtual bool Read(StorageType, const wchar_t*);
+	virtual void VF03(); // slot 3
 
     static bool IsValidDefaultLimitFileSize();
     static std::size_t GetDefaultLimitFileSize();
@@ -66,9 +68,9 @@ private:
     static std::size_t nDefaultLimitFileSize;
 };
 
-class ImageHeaderFileReader : public PhotoHeaderFileReader { // size 0x40
+class PhotoHeaderImageInfoReader : private PhotoHeaderFileReader { // size 0x40
 public:
-    ImageHeaderFileReader(Allocator& rAllocator, StorageType eStoType,
+    PhotoHeaderImageInfoReader(Allocator& rAllocator, StorageType eStoType,
                           const ImageInfo& rImgInfo, bool bTwlCompatible);
     Result ReadImage();
 
@@ -94,11 +96,11 @@ private:
     static std::size_t nDefaultLimitFileSize;
 };
 
-class ImageFileReader : public PhotoFileReader { // size 0x40
+class PhotoImageInfoReader : private PhotoFileReader { // size 0x40
 public:
-    ImageFileReader(Allocator& rAllocator, StorageType eStoType,
+    PhotoImageInfoReader(Allocator& rAllocator, StorageType eStoType,
                     const ImageInfo& rImgInfo, bool bTwlCompatible);
-    ImageFileReader(Allocator&, std::size_t, StorageType, const ImageInfo&,
+    PhotoImageInfoReader(Allocator&, std::size_t, StorageType, const ImageInfo&,
                     bool);
     Result ReadImage();
 

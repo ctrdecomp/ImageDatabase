@@ -38,9 +38,9 @@ namespace imgdb {
 void ImageDbRecordParam::Initialize()
 {
     memset(this, 0, sizeof(ImageDbRecordParam));
-
-
-    eHandleTypeBit = HandleTypeBitPermitDistribute;
+	sShotSeconds.Initialize();
+	eHandleTypeBit = HandleTypeBitPermitDistribute;
+    eShootingType = (ShootingType)(eHandleTypeBit == HandleTypeBitNone);
 }
 
 
